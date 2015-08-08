@@ -1,2 +1,2 @@
 # DAND
-Udacity Data Analyst Nanodegree Course work and Reference
+Udacity Data Analyst Nanodegree Coursework and Reference
