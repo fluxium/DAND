@@ -1,0 +1,81 @@
+female survivors
+84
+58
+53
+-------
+195
+
+female n survive
+2
+6
+56
+-------
+64
+
+female total
+259
+
+male survive
+41
+8
+37
+-------
+86
+
+male n survive
+77
+89
+267
+-------
+433
+
+male total
+519
+
+adult total
+778
+
+f child survive
+7
+12
+19
+-------
+38
+
+f child n survive
+1
+0
+16
+-------
+17
+
+f child total
+55
+
+m child survive
+4
+9
+10
+------
+23
+
+m child n survive
+0
+2
+33
+-------
+35
+
+m child total
+58
+
+child total
+113
+
+total
+891
+
+children
+16 0 F 3 are false positive
+10 1 M 3 are false negative
+
