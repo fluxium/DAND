@@ -9,7 +9,7 @@ import os
 import csv
 from zipfile import ZipFile
 
-datafile = "2013_ERCOT_Hourly_Load_Data.xls"
+datafile = "./datasets/2013_ERCOT_Hourly_Load_Data.xls"
 outfile = "2013_Max_Loads.csv"
 
 
@@ -25,6 +25,7 @@ def parse_file(datafile):
     # YOUR CODE HERE
     # Remember that you can use xlrd.xldate_as_tuple(sometime, 0) to convert
     # Excel date to Python tuple of (year, month, day, hour, minute, second)
+    
     return data
 
 def save_file(data, filename):
