@@ -29,17 +29,45 @@ API_KEY = { "popular": "",
 
 
 def get_from_file(kind, period):
-    filename = "popular-{0}-{1}.json".format(kind, period)
+    #filename = "popular-{0}-{1}.json".format(kind, period)
+    filename = 'Wrangling_JSON.json'
     with open(filename, "r") as f:
         return json.loads(f.read())
 
 
-def article_overview(kind, period):
+def article_overview_instructor(kind, period): # Instructor Code
     data = get_from_file(kind, period)
     titles = []
     urls =[]
-    # YOUR CODE HERE
 
+    for article in data:
+        section = article["section"]
+        title = article["title"]
+        titles.append({section: title})
+        if "media" in article:
+            for m in article["media"]:
+                for mm in m["media-metadata"]:
+                    if mm["format"] == "Standard Thumbnail":
+                        urls.append(mm["url"])
+    return (titles, urls)
+
+
+def article_overview(kind, period):
+    data = get_from_file(kind, period)    
+    titles = []
+    urls =[]
+    # YOUR CODE HERE
+    for a in data:
+        titles.append({a['section'] : a['title']})
+        #print json.dumps(a['media'], indent=4, sort_keys=True)
+        for m in a['media']:
+            #print 'm'
+            #print json.dumps(m, indent=4, sort_keys=True)
+            for mm in m["media-metadata"]:
+                #print 'mm'
+                #print json.dumps(mm, indent=4, sort_keys=True)
+                if mm["format"] == "Standard Thumbnail":
+                    urls.append(mm["url"])
     return (titles, urls)
 
 
@@ -93,6 +121,8 @@ def save_file(kind, period):
 
 def test():
     titles, urls = article_overview("viewed", 1)
+    #print json.dumps(titles, indent=4, sort_keys=True)
+    #print urls
     assert len(titles) == 20
     assert len(urls) == 30
     assert titles[2] == {'Opinion': 'Professors, We Need You!'}

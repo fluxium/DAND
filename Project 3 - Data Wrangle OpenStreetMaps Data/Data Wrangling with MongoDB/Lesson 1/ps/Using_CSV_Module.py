@@ -19,7 +19,7 @@ import os
 DATADIR = ""
 DATAFILE = "745090.csv"
 
-def parse_file_instuctor(datafile):
+def parse_file_instuctor(datafile): # Instructor Code
     name = ""
     data = []
     with open(datafile,'rb') as f:

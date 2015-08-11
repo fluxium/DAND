@@ -4,7 +4,7 @@
 import json
 import requests
 
-
+# Instructor Code
 BASE_URL = "http://musicbrainz.org/ws/2/"
 ARTIST_URL = BASE_URL + "artist/"
 

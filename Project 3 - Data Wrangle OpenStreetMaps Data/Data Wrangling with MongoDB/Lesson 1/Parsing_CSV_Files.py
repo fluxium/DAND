@@ -12,7 +12,7 @@ import os
 DATADIR = ""
 DATAFILE = "beatles-diskography.csv"
 
-def parse_file_instructor(datafile):
+def parse_file_instructor(datafile): # Instructor Code
     data = []
     with open(datafile, "r") as f:
         header = f.readline().split(",")
