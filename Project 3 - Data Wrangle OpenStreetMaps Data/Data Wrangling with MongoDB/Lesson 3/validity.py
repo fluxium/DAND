@@ -18,6 +18,7 @@ You can write helper functions for checking the data and writing the files, but 
 """
 import csv
 import pprint
+import re
 
 INPUT_FILE = 'autos.csv'
 OUTPUT_GOOD = 'autos-valid.csv'
@@ -29,8 +30,18 @@ def process_file(input_file, output_good, output_bad):
         reader = csv.DictReader(f)
         header = reader.fieldnames
 
-        #COMPLETE THIS FUNCTION
-        
+    #COMPLETE THIS FUNCTION
+        for row in reader:
+            re.match('[1-2][8-0][8-1][0-9]', '2000')
+    #- check if the field "productionStartYear" contains a year
+    #- check if the year is in range 1886-2014
+    #- convert the value of the field to be just a year (not full datetime)
+    #- the rest of the fields and values should stay the same
+    #- if the value of the field is a valid year in range, as described above,
+    #  write that line to the output_good file
+    #- if the value of the field is not a valid year, 
+    #  write that line to the output_bad file
+    #- discard rows (neither write to good nor bad) if the URI is not from dbpedia.org
 
 
     # This is just an example on how you can use csv.DictWriter
@@ -38,7 +49,7 @@ def process_file(input_file, output_good, output_bad):
     with open(output_good, "w") as g:
         writer = csv.DictWriter(g, delimiter=",", fieldnames= header)
         writer.writeheader()
-        for row in YOURDATA:
+        for row in []:
             writer.writerow(row)
 
 
