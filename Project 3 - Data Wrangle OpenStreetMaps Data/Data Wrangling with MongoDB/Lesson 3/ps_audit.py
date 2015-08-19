@@ -37,11 +37,40 @@ FIELDS = ["name", "timeZone_label", "utcOffset", "homepage", "governmentType_lab
 def audit_file(filename, fields):
     fieldtypes = {}
 
-    # YOUR CODE HERE
-
+    # YOUR CODE HERE        
+    for fld in FIELDS:
+        with open(filename, 'r') as f:
+            reader = csv.DictReader(f)
+            types = set()
+            for row in reader:
+                if 'dbpedia.org' not in row['URI']:
+                    continue
+                if row[fld] == 'NULL' or row[fld] == '':
+                    types.add(type(None))
+                elif row[fld].startswith('{'):
+                    types.add(type([]))
+                else:
+                    types.add(get_num_type(row[fld]))
+            
+        fieldtypes[fld] = types.copy()
 
     return fieldtypes
 
+
+"""
+returns either int, float, or str depending on the success of casting for each
+of those three types
+"""
+def get_num_type(num):
+    # http://stackoverflow.com/questions/379906/parse-string-to-float-or-int
+    try:
+        return type(int(num))
+    except ValueError:
+        try:
+            return type(float(num))
+        except ValueError:
+            return type(num)
+    
 
 def test():
     fieldtypes = audit_file(CITIES, FIELDS)
