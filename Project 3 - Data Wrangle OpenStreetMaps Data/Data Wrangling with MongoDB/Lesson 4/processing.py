@@ -66,9 +66,36 @@ def process_file(filename, fields):
 
         for line in reader:
             # YOUR CODE HERE
-            
+            clean_dict = {}
+            clean_class = {}
+            for f in process_fields:
+                if f == 'rdf-schema#label':
+                    clean_dict[fields[f]] = check_null_string(line[f].split(r'(')[0].strip())
+                elif f == 'name':
+                    if re.search(r'\W', line[f]) != None or line[f] == 'NULL':
+                        clean_dict[fields[f]] = check_null_string(line['rdf-schema#label'].strip())
+                    else:
+                        clean_dict[fields[f]] = check_null_string(line[f])
+                elif f == 'synonym':
+                    if check_null_string(line[f]) != None:
+                        clean_dict[fields[f]] = parse_array(line[f])
+                        for i, v in enumerate(clean_dict[fields[f]]):
+                            clean_dict[fields[f]][i] = check_null_string(v)
+                    else:
+                        clean_dict[fields[f]] = check_null_string(line[f])
+                elif f in ['family_label', 'class_label', 'phylum_label', 'order_label', 'kingdom_label', 'genus_label']:
+                    clean_class[fields[f]] = check_null_string(line[f])
+                else:
+                    clean_dict[fields[f]] = check_null_string(line[f])
+                clean_dict['classification'] = clean_class
+            data.append(clean_dict)
     return data
 
+def check_null_string(value):
+    if value.startswith('NULL'):
+        return None
+    else:
+        return value
 
 def parse_array(v):
     if (v[0] == "{") and (v[-1] == "}"):
