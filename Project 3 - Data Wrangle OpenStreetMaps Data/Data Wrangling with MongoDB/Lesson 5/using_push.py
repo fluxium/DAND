@@ -39,7 +39,7 @@ def make_pipeline():
                                  'tweet_texts' : {'$push' : '$text'}
                                  }
                     },
-                    {'$sort' : {'user.statuses_count' : -1}},
+                    {'$sort' : {'count' : -1}},
                     {'$limit' : 5}
                 ]
                 
