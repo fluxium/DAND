@@ -30,9 +30,45 @@ def get_db(db_name):
     db = client[db_name]
     return db
 
+'''
+                    {'$match' : {'name' : {'$exists' : 1}, 'country' : {'$exists' : 1}, 'isPartOf' : {'$exists' : 1}}},
+                    {'$unwind' : '$isPartOf'},
+                    {'$group' : 
+                        {
+                        '_id' : '$isPartOf',
+                        'average_population' : {'$avg' : '$population'}
+                        }
+                    },
+                    {'$group' : 
+                        {
+                        '_id' : '$country',
+                        'avgRegionalPopulation' : {'$avg': '$average_population'}
+                        }
+                    }
+'''
+
 def make_pipeline():
     # complete the aggregation pipeline
-    pipeline = [ ]
+    pipeline =  [
+                    {
+                    '$match' : 
+                        {
+                        'name' : {'$exists' : 1},
+                        'country' : {'$exists' : 1},
+                        #'isPartOf' : {'$exists' : 1}
+                        }
+                    },
+                    {'$unwind' : '$isPartOf'},
+                    { '$ifNull' : {'isPartOf' : '$isPartOf', 'isPartOf' : '$name'}},
+                    {
+                    '$group' : 
+                        {
+                        '_id' : {'country' : '$country', 'region' : '$isPartOf'},
+                        'avg' : {'$avg' : '$population'}
+                        }
+                    }
+                ]
+                
     return pipeline
 
 def aggregate(db, pipeline):
