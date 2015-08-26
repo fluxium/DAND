@@ -46,11 +46,40 @@ def get_db(db_name):
                         }
                     }
 '''
-
-def make_pipeline():
-    # complete the aggregation pipeline
-    pipeline =  [
+'''
+project = {$project : {
+        "s" : {
+            "$ifNull" : [
+                "$solved",
+                [
                     {
+                        "points" : 0
+                    }
+                ]
+            ]
+        },
+        "login" : 1
+    }
+};
+unwind={$unwind:"$s"};
+group= { "$group" : {
+        "_id" : "$_id",
+        "login" : {
+            "$first" : "$login"
+        },
+        "score" : {
+            "$sum" : "$s.points"
+        }
+    }
+}
+'''
+'''
+'s': { $cond: [{$eq: [{$size: '$solved'}, 0] }, [ { point: 0 } ], '$solved'] }
+'''
+
+
+'''
+{
                     '$match' : 
                         {
                         'name' : {'$exists' : 1},
@@ -58,13 +87,35 @@ def make_pipeline():
                         #'isPartOf' : {'$exists' : 1}
                         }
                     },
+                    
+                    {'$match' : {'country' : 'Lithuania'}},
+'''
+
+def make_pipeline():
+    # complete the aggregation pipeline
+    pipeline =  [
+                    
+                    {'$project' : 
+                        {
+                        'country' : 1,
+                        'isPartOf' : {'$ifNull' : ['$isPartOf', ['$country']]},
+                        'population' : 1
+                        }
+                    },
                     {'$unwind' : '$isPartOf'},
-                    { '$ifNull' : {'isPartOf' : '$isPartOf', 'isPartOf' : '$name'}},
+                    #{ '$ifNull' : {'isPartOf' : '$isPartOf', 'isPartOf' : '$name'}},
                     {
                     '$group' : 
                         {
                         '_id' : {'country' : '$country', 'region' : '$isPartOf'},
-                        'avg' : {'$avg' : '$population'}
+                        'c_r_ave' : {'$avg' : '$population'}
+                        }
+                    },
+                    {
+                    '$group' : 
+                        {
+                        '_id' : '$_id.country',
+                        'avgRegionalPopulation' : {'$avg' : '$c_r_ave'}
                         }
                     }
                 ]
