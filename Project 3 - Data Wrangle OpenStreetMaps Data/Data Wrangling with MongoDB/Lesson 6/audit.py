@@ -23,7 +23,9 @@ expected = ["Street", "Avenue", "Boulevard", "Drive", "Court", "Place", "Square"
 
 # UPDATE THIS VARIABLE
 mapping = { "St": "Street",
-            "St.": "Street"
+            "St.": "Street",
+            "Rd." : 'Road',
+            'Ave' : "Avenue"
             }
 
 
@@ -52,11 +54,13 @@ def audit(osmfile):
     return street_types
 
 
-def update_name(name, mapping):
+# http://stackoverflow.com/questions/3543559/python-regex-match-and-replace
+def process_match(m):
+    return mapping.get(m.group())
 
-    # YOUR CODE HERE
 
-    return name
+def update_name(name, mapping): 
+    return street_type_re.sub(process_match, name) 
 
 
 def test():
