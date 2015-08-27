@@ -18,7 +18,9 @@ def get_user(element):
 def process_map(filename):
     users = set()
     for _, element in ET.iterparse(filename):
-        pass
+        temp_uid = element.attrib.get('uid')
+        if temp_uid != None:
+            users.add(temp_uid)
 
     return users
 
