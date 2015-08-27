@@ -89,9 +89,16 @@ should be turned into
 lower = re.compile(r'^([a-z]|_)*$')
 lower_colon = re.compile(r'^([a-z]|_)*:([a-z]|_)*$')
 problemchars = re.compile(r'[=\+/&<>;\'"\?%#$@\,\. \t\r\n]')
+street_type_re = re.compile(r'\b\S+\.?$', re.IGNORECASE)
+
 
 CREATED = [ "version", "changeset", "timestamp", "user", "uid"]
 
+ST_TYPE_MAPPING = { "St": "Street",
+            "St.": "Street",
+            "Rd." : 'Road',
+            'Ave' : "Avenue"
+            }
 
 def shape_element(element):
     node = {}
@@ -101,6 +108,15 @@ def shape_element(element):
         return node
     else:
         return None
+
+
+# http://stackoverflow.com/questions/3543559/python-regex-match-and-replace
+def process_match(m):
+    return ST_TYPE_MAPPING.get(m.group())
+
+
+def update_name(name, mapping): 
+    return street_type_re.sub(process_match, name) 
 
 
 def process_map(file_in, pretty = False):
