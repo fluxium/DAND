@@ -5,6 +5,7 @@ import pprint
 import re
 import codecs
 import json
+import collections
 """
 Your task is to wrangle the data and transform the shape of the data
 into the model we mentioned earlier. The output should be a list of dictionaries
@@ -34,8 +35,10 @@ that look like this:
 }
 
 You have to complete the function 'shape_element'.
-We have provided a function that will parse the map file, and call the function with the element
-as an argument. You should return a dictionary, containing the shaped data for that element.
+We have provided a function that will parse the map file, and call the function
+ with the element
+as an argument. You should return a dictionary, containing the shaped data for 
+that element.
 We have also provided a way to save the data in a file, so that you could use
 mongoimport later on to import the shaped data into MongoDB. 
 
@@ -46,14 +49,19 @@ update the street names before you save them to JSON.
 
 In particular the following things should be done:
 - you should process only 2 types of top level tags: "node" and "way"
-- all attributes of "node" and "way" should be turned into regular key/value pairs, except:
+- all attributes of "node" and "way" should be turned into regular key/value 
+pairs, except:
     - attributes in the CREATED array should be added under a key "created"
     - attributes for latitude and longitude should be added to a "pos" array,
-      for use in geospacial indexing. Make sure the values inside "pos" array are floats
+      for use in geospacial indexing. Make sure the values inside "pos" array 
+      are floats
       and not strings. 
-- if second level tag "k" value contains problematic characters, it should be ignored
-- if second level tag "k" value starts with "addr:", it should be added to a dictionary "address"
-- if second level tag "k" value does not start with "addr:", but contains ":", you can process it
+- if second level tag "k" value contains problematic characters, it should be 
+ignored
+- if second level tag "k" value starts with "addr:", it should be added to a 
+dictionary "address"
+- if second level tag "k" value does not start with "addr:", but contains ":",
+ you can process it
   same as any other tag.
 - if there is a second ":" that separates the type/direction of a street,
   the tag should be ignored, for example:
@@ -100,14 +108,83 @@ ST_TYPE_MAPPING = { "St": "Street",
             'Ave' : "Avenue"
             }
 
+
+def shape_base(element):
+    
+    node = collections.defaultdict()    
+    
+    created_keys = ["version", "changeset", "timestamp", "user", "uid"]
+    root_keys = ['id', 'visible']    
+    
+    node['type'] = element.tag
+    node['created'] = collections.defaultdict()
+    
+    # Probably could use the .get() method on element here
+    if 'lat' in element.attrib and 'lon' in element.attrib:
+        node['pos'] = [float(element.attrib['lat']), float(element.attrib['lon'])]       
+
+    # http://stackoverflow.com/questions/3294889/iterating-over-dictionaries-using-for-loops-in-python    
+    for k, v in (element.attrib).iteritems():
+        if k in created_keys:
+            node['created'][k] = v
+        elif k in root_keys:
+            node[k] = v
+            
+    return node
+    
+    
+def shape_node(node, element):
+    for t in element:
+        for k, v in t.iteritems():
+            
+    return node
+    
+    
+def shape_way(node, element):
+    
+    return node
+
+
 def shape_element(element):
-    node = {}
+    node = collections.defaultdict()
+    
     if element.tag == "node" or element.tag == "way" :
         # YOUR CODE HERE
+        node = shape_base(element)
+        
+        if element.tag == "node":
+            node = shape_node(node, element)
+        elif element.tag == "way":
+            node = shape_way(node, element)
         
         return node
     else:
         return None
+
+
+def audit_street_type(street_types, street_name):
+    m = street_type_re.search(street_name)
+    if m:
+        street_type = m.group()
+        if street_type not in expected:
+            street_types[street_type].add(street_name)
+
+
+def is_street_name(elem):
+    return (elem.attrib['k'] == "addr:street")
+
+
+def audit(osmfile):
+    osm_file = open(osmfile, "r")
+    street_types = defaultdict(set)
+    for event, elem in ET.iterparse(osm_file, events=("start",)):
+
+        if elem.tag == "node" or elem.tag == "way":
+            for tag in elem.iter("tag"):
+                if is_street_name(tag):
+                    audit_street_type(street_types, tag.attrib['v'])
+
+    return street_types
 
 
 # http://stackoverflow.com/questions/3543559/python-regex-match-and-replace
@@ -140,6 +217,7 @@ def test():
     # additional spaces to the output, making it significantly larger.
     data = process_map('example.osm', True)
     #pprint.pprint(data)
+    print data[0]
     
     correct_first_elem = {
         "id": "261114295", 
