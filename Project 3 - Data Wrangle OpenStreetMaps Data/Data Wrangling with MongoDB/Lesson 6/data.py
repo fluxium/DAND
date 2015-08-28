@@ -5,7 +5,7 @@ import pprint
 import re
 import codecs
 import json
-import collections
+from collections import defaultdict
 """
 Your task is to wrangle the data and transform the shape of the data
 into the model we mentioned earlier. The output should be a list of dictionaries
@@ -102,6 +102,9 @@ street_type_re = re.compile(r'\b\S+\.?$', re.IGNORECASE)
 
 CREATED = [ "version", "changeset", "timestamp", "user", "uid"]
 
+ST_TYPE_EXPECTED = ["Street", "Avenue", "Boulevard", "Drive", "Court", "Place", "Square", "Lane", "Road", 
+            "Trail", "Parkway", "Commons"]
+
 ST_TYPE_MAPPING = { "St": "Street",
             "St.": "Street",
             "Rd." : 'Road',
@@ -111,13 +114,13 @@ ST_TYPE_MAPPING = { "St": "Street",
 
 def shape_base(element):
     
-    node = collections.defaultdict()    
+    node = defaultdict()    
     
     created_keys = ["version", "changeset", "timestamp", "user", "uid"]
     root_keys = ['id', 'visible']    
     
     node['type'] = element.tag
-    node['created'] = collections.defaultdict()
+    node['created'] = defaultdict()
     
     # Probably could use the .get() method on element here
     if 'lat' in element.attrib and 'lon' in element.attrib:
@@ -130,50 +133,73 @@ def shape_base(element):
         elif k in root_keys:
             node[k] = v
             
-    return node
+    return shape_node(node, element)
     
-    
+
+def regex_key(k):
+    l = lower.search(k)
+    lc = lower_colon.search(k)
+    pc = problemchars.search(k)
+
+    return l, lc, pc
+
+
 def shape_node(node, element):
+    
+    node_refs = []
+    address = defaultdict()    
+    
     for t in element:
-        for k, v in t.iteritems():
+        k = t.attrib.get('k')
+        v = t.attrib.get('v')
+        r = t.attrib.get('ref')
+        
+        if k:
+            l, lc, pc = regex_key(k)       
+            if pc == None:
+                if k.startswith('addr'):
+                    if lc:
+                        # FIXME The v in this line need to be run through data cleaning for
+                        # street types
+                        address[k.split(':')[1]] = v
+                    else:
+                        continue
+                else:
+                    node[k] = v
+        if r:
+            node_refs.append(r)
             
-    return node
-    
-    
-def shape_way(node, element):
-    
+        if len(address) > 0:
+            node['address'] = address
+        if len(node_refs) > 0:
+            node['node_refs'] = node_refs
     return node
 
 
 def shape_element(element):
-    node = collections.defaultdict()
+    node = {}
     
     if element.tag == "node" or element.tag == "way" :
         # YOUR CODE HERE
         node = shape_base(element)
         
-        if element.tag == "node":
-            node = shape_node(node, element)
-        elif element.tag == "way":
-            node = shape_way(node, element)
-        
-        return node
+        return dict(node)
     else:
         return None
 
-
+# Instructor code from audit.py
 def audit_street_type(street_types, street_name):
     m = street_type_re.search(street_name)
     if m:
         street_type = m.group()
-        if street_type not in expected:
+        if street_type not in ST_TYPE_EXPECTED:
             street_types[street_type].add(street_name)
 
-
+# Instructor code from audit.py
 def is_street_name(elem):
     return (elem.attrib['k'] == "addr:street")
 
-
+# Instructor code from audit.py
 def audit(osmfile):
     osm_file = open(osmfile, "r")
     street_types = defaultdict(set)
@@ -189,11 +215,15 @@ def audit(osmfile):
 
 # http://stackoverflow.com/questions/3543559/python-regex-match-and-replace
 def process_match(m):
-    return ST_TYPE_MAPPING.get(m.group())
+    if ST_TYPE_MAPPING.get(m.group()) != None:
+        return ST_TYPE_MAPPING.get(m.group())
+    else:
+        return m.group()
+    return 
 
 
-def update_name(name, mapping): 
-    return street_type_re.sub(process_match, name) 
+def update_name(name): 
+    return street_type_re.sub(process_match, name)
 
 
 def process_map(file_in, pretty = False):
@@ -217,8 +247,8 @@ def test():
     # additional spaces to the output, making it significantly larger.
     data = process_map('example.osm', True)
     #pprint.pprint(data)
-    print data[0]
-    
+    #print data
+
     correct_first_elem = {
         "id": "261114295", 
         "visible": "true", 
