@@ -35,7 +35,7 @@ ST_TYPE_MAPPING = { "St": "Street",
             'Blvd.' : 'Boulevard'
             }
 
-
+# Instructor Code
 def audit_street_type(street_types, street_name):
     m = get_suffix(street_name)
     if m:
@@ -56,11 +56,11 @@ def remove_dir(m):
         return m.group()
     return 
 
-
+# Instructor Code
 def is_street_name(elem):
     return (elem.attrib['k'] == "addr:street")
 
-
+# Instructor Code
 def audit(osmfile):
     osm_file = open(osmfile, "r")
     street_types = defaultdict(set)
@@ -73,6 +73,14 @@ def audit(osmfile):
 
     return street_types
 
+def find_tags_with_attrib(osmfile, attrib):
+    osm_file = open(osmfile, "r")
+    tags = defaultdict(int)
+    for event, elem in ET.iterparse(osm_file, events=("start",)):
+        if attrib in elem.attrib:
+            tags[elem.tag] += 1
+    
+    return tags
 
 # http://stackoverflow.com/questions/3543559/python-regex-match-and-replace
 def process_match(m):
@@ -88,8 +96,8 @@ def update_name(name):
 
 
 
-st_types = audit(OSMFILE)
-pprint.pprint(dict(st_types))
+#st_types = audit(OSMFILE)
+#pprint.pprint(dict(st_types))
 
 #for st_type, ways in st_types.iteritems():
 #    for name in ways:
