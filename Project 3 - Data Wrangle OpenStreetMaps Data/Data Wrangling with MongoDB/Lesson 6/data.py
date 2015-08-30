@@ -102,8 +102,8 @@ street_type_re = re.compile(r'\b\S+\.?$', re.IGNORECASE)
 
 CREATED = [ "version", "changeset", "timestamp", "user", "uid"]
 
-ST_TYPE_EXPECTED = ["Street", "Avenue", "Boulevard", "Drive", "Court", "Place", "Square", "Lane", "Road", 
-            "Trail", "Parkway", "Commons"]
+ST_TYPE_EXPECTED = ["Street", "Avenue", "Boulevard", "Drive", "Court", "Place",
+                    "Square", "Lane", "Road", "Trail", "Parkway", "Commons"]
 
 ST_TYPE_MAPPING = { "St": "Street",
             "St.": "Street",
@@ -159,8 +159,8 @@ def shape_node(node, element):
             if pc == None:
                 if k.startswith('addr'):
                     if lc:
-                        # FIXME The v in this line need to be run through data cleaning for
-                        # street types
+                        # FIXME The v in this line need to be run through data 
+                        # cleaning for street types
                         address[k.split(':')[1]] = v
                     else:
                         continue

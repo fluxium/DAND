@@ -56,11 +56,15 @@ def audit(osmfile):
 
 # http://stackoverflow.com/questions/3543559/python-regex-match-and-replace
 def process_match(m):
-    return mapping.get(m.group())
+    if mapping.get(m.group()) != None:
+        return mapping.get(m.group())
+    else:
+        return m.group()
+    return 
 
 
-def update_name(name, mapping): 
-    return street_type_re.sub(process_match, name) 
+def update_name(name): 
+    return street_type_re.sub(process_match, name)
 
 
 def test():
