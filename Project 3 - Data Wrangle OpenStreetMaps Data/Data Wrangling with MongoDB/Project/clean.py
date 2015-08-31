@@ -7,6 +7,9 @@ Created on Sat Aug 29 16:18:44 2015
 This file contains the code to clean the Map Zen Calgary Metro Area
 OpenStreetMaps data extract. This code will output a cleaned JSON file that can
 be imported in to MongoDB for further analysis
+
+Some code was provided by the authors and instructors of 
+Udacity - Data Wrangling with MongoDB
 """
 import xml.etree.cElementTree as ET
 from collections import defaultdict
@@ -97,7 +100,8 @@ def process_map(file_in, pretty = False):
 
 def shape_element(element):
     node = {}
-    node = shape_base(element)
+    if element.tag == 'node' or element.tag == 'way' or element.tag == 'relation':
+        node = shape_base(element)
     return node
     
 
@@ -142,19 +146,12 @@ def shape_node(node, element):
             
             if pc == None:
                 if k.startswith('addr'):
-                    if lc:
-                        # FIXME The v in this line need to be run through data 
-                        # cleaning for street types
-                    
-                        
-     
-                        # Some 'addr:street' values have the city and province
-                        # included                   
-                        
-                        
+                    if lc:       
                         address[k.split(':')[1]] = update_st_name(v)
                     else:
                         continue
+                elif k == 'created_by':
+                    node['created'][k] = v
                 else:
                     node[k] = v
         elif t.tag == 'nd':
@@ -197,7 +194,7 @@ def update_st_name(street_name):
             # street_name should now have the street type exposed on the end
             # of the string
             street_name = street_type_re.sub(remove_suffix, street_name)
-            # Recusive call to have the funtion check street type is
+            # Recusive call to have the funtion check street type. strip() is
             # needed so that the RegEx matches properly
             return str(update_st_name(street_name.strip())) + ' ' + init_search
         elif init_search in DIR_MAPPING:
@@ -212,6 +209,7 @@ def update_st_name(street_name):
         elif init_search in ST_TYPE_MAPPING:
             st_ty_clean = ST_TYPE_MAPPING[init_search]
             street_name = street_type_re.sub(st_ty_clean, street_name)
+            # Alternate recursive base case
             return street_name
     else:
         # Recursion should not hit this else, something has gone wrong; will
