@@ -77,6 +77,7 @@ DIR_MAPPING = {'East' : 'E',
                'South' : 'S',
                'South-west' : 'SW',
                'Southeast' : 'SE',
+               'South-east' : 'SE',
                'Southwest' : 'SW',
                'West' : 'W'
                }
@@ -210,6 +211,10 @@ def update_st_name(street_name):
             st_ty_clean = ST_TYPE_MAPPING[init_search]
             street_name = street_type_re.sub(st_ty_clean, street_name)
             # Alternate recursive base case
+            return street_name
+        else:
+            # Catches streets that will not be cleaned like 
+            # 'Township Road  204A'
             return street_name
     else:
         # Recursion should not hit this else, something has gone wrong; will

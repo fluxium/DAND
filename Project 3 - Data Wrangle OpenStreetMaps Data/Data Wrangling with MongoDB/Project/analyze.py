@@ -4,10 +4,10 @@ Created on Mon Aug 31 13:28:58 2015
 
 @author: Mahlon Barrault (mahlonbarrault@gmail.com)
 
-This file contains the code to clean the Map Zen Calgary Metro Area
-OpenStreetMaps data extract. This code will output a cleaned JSON file that can
-be imported in to MongoDB for further analysis
+This file contains code to validate cleaning done to the Zen Map Calgary Metro
+Extract OpenStreetMaps data.
 """
+
 
 # Instructor Code
 def get_db(db_name):
@@ -18,9 +18,14 @@ def get_db(db_name):
 
 
 def make_pipeline():
-    pipeline = []
+    pipeline = [
+                {'$project': 
+                    {'street' : '$address.street'}}           
+                ]
     return pipeline
- 
+
+def get_all_docs(db):
+    return db.calgary_canada_osm.find({'address.street' : {'$exists' : 1}})
 
 # Instructor Code
 def aggregate(db, pipeline):
@@ -29,5 +34,5 @@ def aggregate(db, pipeline):
 
 
 db = get_db('osm')
-pipeline = make_pipeline()
-result = aggregate(db, pipeline)
+#pipeline = make_pipeline()
+#result = aggregate(db, pipeline)
