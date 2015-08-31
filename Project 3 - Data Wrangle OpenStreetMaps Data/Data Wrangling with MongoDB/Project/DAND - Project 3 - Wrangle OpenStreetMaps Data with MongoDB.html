@@ -184,7 +184,9 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Table-of-Contents">Table of Contents<a class="anchor-link" href="#Table-of-Contents">&#182;</a></h2><p><a href="#Problems-Encountered-in-the-Map">Problems Encountered in the Map</a></p>
-<p><a href="#Directional-Suffixes">Directional Suffixes</a></p>
+<ul>
+<li><a href="#Directional-Suffixes">Directional Suffixes</a></li>
+</ul>
 <p><a href="#Data-Overview">Data Overview</a></p>
 <p><a href="#Additional-Ideas">Additional Ideas</a></p>
 
@@ -202,448 +204,13 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="o">%</span><span class="k">run</span> tags.py
+<div class=" highlight hl-ipython2"><pre><span class="c">#%run tags.py</span>
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>RegEx Keys:
-{&apos;lower&apos;: 295824, &apos;lower_colon&apos;: 15877, &apos;other&apos;: 14166, &apos;problemchars&apos;: 0}
-
-Sorted Keys:
-[None,
- &apos;FIXME&apos;,
- &apos;FIXME-range&apos;,
- &apos;FIXME-rnage&apos;,
- &apos;Icn_ref&apos;,
- &apos;RBC&apos;,
- &apos;abutters&apos;,
- &apos;access&apos;,
- &apos;addr:city&apos;,
- &apos;addr:country&apos;,
- &apos;addr:county&apos;,
- &apos;addr:full&apos;,
- &apos;addr:housename&apos;,
- &apos;addr:housenumber&apos;,
- &apos;addr:housenumber:first:left&apos;,
- &apos;addr:housenumber:first:right&apos;,
- &apos;addr:housenumber:last:left&apos;,
- &apos;addr:housenumber:last:right&apos;,
- &apos;addr:interpolation&apos;,
- &apos;addr:postcode&apos;,
- &apos;addr:province&apos;,
- &apos;addr:state&apos;,
- &apos;addr:street&apos;,
- &apos;addr:unit&apos;,
- &apos;admin_level&apos;,
- &apos;advertising&apos;,
- &apos;aerialway&apos;,
- &apos;aerialway:bicycle&apos;,
- &apos;aeroway&apos;,
- &apos;alt_name&apos;,
- &apos;alt_name:en&apos;,
- &apos;amenity&apos;,
- &apos;area&apos;,
- &apos;artist_name&apos;,
- &apos;artwork_type&apos;,
- &apos;atm&apos;,
- &apos;attraction&apos;,
- &apos;attribution&apos;,
- &apos;automated&apos;,
- &apos;backrest&apos;,
- &apos;barrier&apos;,
- &apos;basin&apos;,
- &apos;bench&apos;,
- &apos;bicycle&apos;,
- &apos;bicycle:backward&apos;,
- &apos;bicycle_parking&apos;,
- &apos;board_type&apos;,
- &apos;boat&apos;,
- &apos;boundary&apos;,
- &apos;brand&apos;,
- &apos;bridge&apos;,
- &apos;bridge:name&apos;,
- &apos;building&apos;,
- &apos;building:colour&apos;,
- &apos;building:flats&apos;,
- &apos;building:levels&apos;,
- &apos;building:shape&apos;,
- &apos;bus&apos;,
- &apos;bus_routes&apos;,
- &apos;busway:right&apos;,
- &apos;c&apos;,
- &apos;cable&apos;,
- &apos;cables&apos;,
- &apos;capacity&apos;,
- &apos;capacity:disabled&apos;,
- &apos;capacity:parent&apos;,
- &apos;capacity:women&apos;,
- &apos;catmp-RoadID&apos;,
- &apos;check_date&apos;,
- &apos;color&apos;,
- &apos;colour&apos;,
- &apos;comment&apos;,
- &apos;construction&apos;,
- &apos;contact:email&apos;,
- &apos;contact:fax&apos;,
- &apos;contact:phone&apos;,
- &apos;contact:website&apos;,
- &apos;country&apos;,
- &apos;courts&apos;,
- &apos;covered&apos;,
- &apos;cr:blue:men&apos;,
- &apos;cr:blue:woman&apos;,
- &apos;cr:green:men&apos;,
- &apos;cr:green:woman&apos;,
- &apos;cr:white:men&apos;,
- &apos;cr:white:woman&apos;,
- &apos;craft&apos;,
- &apos;created_by&apos;,
- &apos;crossing&apos;,
- &apos;crossing:barrier&apos;,
- &apos;crossing:bell&apos;,
- &apos;crossing:light&apos;,
- &apos;crossing_ref&apos;,
- &apos;cuisine&apos;,
- &apos;currency:CAD&apos;,
- &apos;cutting&apos;,
- &apos;cycleway&apos;,
- &apos;cycleway:right&apos;,
- &apos;dam&apos;,
- &apos;day_off&apos;,
- &apos;day_on&apos;,
- &apos;delivery&apos;,
- &apos;denomination&apos;,
- &apos;description&apos;,
- &apos;designation&apos;,
- &apos;destination&apos;,
- &apos;direction&apos;,
- &apos;dispensing&apos;,
- &apos;dist:blue&apos;,
- &apos;dist:green&apos;,
- &apos;dist:red&apos;,
- &apos;dist:white&apos;,
- &apos;dist:yellow&apos;,
- &apos;distance_marker&apos;,
- &apos;disused:leisure&apos;,
- &apos;dog&apos;,
- &apos;drive-thru_atm&apos;,
- &apos;drive_through&apos;,
- &apos;ele&apos;,
- &apos;electrified&apos;,
- &apos;elevated&apos;,
- &apos;elevator&apos;,
- &apos;email&apos;,
- &apos;embankment&apos;,
- &apos;emergency&apos;,
- &apos;end_date&apos;,
- &apos;enforcement&apos;,
- &apos;entrance&apos;,
- &apos;except&apos;,
- &apos;exit_to&apos;,
- &apos;facebook&apos;,
- &apos;fax&apos;,
- &apos;fee&apos;,
- &apos;fence_type&apos;,
- &apos;fenced&apos;,
- &apos;finely_mown&apos;,
- &apos;fixme&apos;,
- &apos;foot&apos;,
- &apos;footway&apos;,
- &apos;from&apos;,
- &apos;fuel:diesel&apos;,
- &apos;fuel:octane_91&apos;,
- &apos;furniture&apos;,
- &apos;garmin_road_class&apos;,
- &apos;garmin_type&apos;,
- &apos;gauge&apos;,
- &apos;generator:source&apos;,
- &apos;geobase:acquisitionTechnique&apos;,
- &apos;geobase:datasetName&apos;,
- &apos;geobase:routeName1:en&apos;,
- &apos;geobase:uuid&apos;,
- &apos;gns:adm1&apos;,
- &apos;gns:cc1&apos;,
- &apos;gns:dms_lat&apos;,
- &apos;gns:dms_long&apos;,
- &apos;gns:dsg&apos;,
- &apos;gns:fc&apos;,
- &apos;gns:jog&apos;,
- &apos;gns:lat&apos;,
- &apos;gns:long&apos;,
- &apos;gns:mgrs&apos;,
- &apos;gns:n:xx:full_name&apos;,
- &apos;gns:n:xx:full_name_nd&apos;,
- &apos;gns:n:xx:modify_date&apos;,
- &apos;gns:n:xx:nt&apos;,
- &apos;gns:n:xx:sort_name&apos;,
- &apos;gns:rc&apos;,
- &apos;gns:ufi&apos;,
- &apos;gns:uni&apos;,
- &apos;golf&apos;,
- &apos;golf_cart&apos;,
- &apos;goods&apos;,
- &apos;grade&apos;,
- &apos;guage&apos;,
- &apos;guidepost&apos;,
- &apos;handicap&apos;,
- &apos;handrail&apos;,
- &apos;health_facility:type&apos;,
- &apos;health_facility_type&apos;,
- &apos;health_service:test&apos;,
- &apos;healthcare&apos;,
- &apos;height&apos;,
- &apos;heritage&apos;,
- &apos;hgv&apos;,
- &apos;highway&apos;,
- &apos;historic&apos;,
- &apos;history&apos;,
- &apos;horse&apos;,
- &apos;hour_off&apos;,
- &apos;hour_on&apos;,
- &apos;iata&apos;,
- &apos;icao&apos;,
- &apos;incline&apos;,
- &apos;indoor&apos;,
- &apos;information&apos;,
- &apos;int_name&apos;,
- &apos;internet_access&apos;,
- &apos;is_in&apos;,
- &apos;is_in:city&apos;,
- &apos;is_in:continent&apos;,
- &apos;is_in:country&apos;,
- &apos;is_in:country_code&apos;,
- &apos;junction&apos;,
- &apos;kerb&apos;,
- &apos;key&apos;,
- &apos;landcover&apos;,
- &apos;landuse&apos;,
- &apos;lanes&apos;,
- &apos;layer&apos;,
- &apos;lcn&apos;,
- &apos;lcn_ref&apos;,
- &apos;leaf_cycle&apos;,
- &apos;leaf_type&apos;,
- &apos;leisure&apos;,
- &apos;length&apos;,
- &apos;level&apos;,
- &apos;light_rail&apos;,
- &apos;lit&apos;,
- &apos;loc_name&apos;,
- &apos;local_ref&apos;,
- &apos;location&apos;,
- &apos;man_made&apos;,
- &apos;material&apos;,
- &apos;maxheight&apos;,
- &apos;maxlength&apos;,
- &apos;maxspeed&apos;,
- &apos;maxspeed:advisory&apos;,
- &apos;medicinal_system:western&apos;,
- &apos;military&apos;,
- &apos;motor_vehicle&apos;,
- &apos;motorcar&apos;,
- &apos;motorcycle&apos;,
- &apos;motorhome&apos;,
- &apos;mown&apos;,
- &apos;mtb:description&apos;,
- &apos;mtb:scale&apos;,
- &apos;mtb:scale:imba&apos;,
- &apos;mtb:scale:uphill&apos;,
- &apos;name&apos;,
- &apos;name:ar&apos;,
- &apos;name:de&apos;,
- &apos;name:en&apos;,
- &apos;name:es&apos;,
- &apos;name:fr&apos;,
- &apos;name:it&apos;,
- &apos;name:ru&apos;,
- &apos;name:uk&apos;,
- &apos;name_1&apos;,
- &apos;naptan:Bearing&apos;,
- &apos;nat_name:en&apos;,
- &apos;nat_name:fr&apos;,
- &apos;natural&apos;,
- &apos;network&apos;,
- &apos;noexit&apos;,
- &apos;note&apos;,
- &apos;notes&apos;,
- &apos;office&apos;,
- &apos;old_name&apos;,
- &apos;old_ref&apos;,
- &apos;oneway&apos;,
- &apos;oneway:bicycle&apos;,
- &apos;opening_hours&apos;,
- &apos;opening_hours:url&apos;,
- &apos;operator&apos;,
- &apos;outdoor_seating&apos;,
- &apos;overflow&apos;,
- &apos;par&apos;,
- &apos;park_ride&apos;,
- &apos;parking&apos;,
- &apos;paved&apos;,
- &apos;payment:bitcoin&apos;,
- &apos;payment:cash&apos;,
- &apos;payment:coins&apos;,
- &apos;payment:credit_cards&apos;,
- &apos;payment:debit_cards&apos;,
- &apos;payment:litecoin&apos;,
- &apos;phone&apos;,
- &apos;piste:difficulty&apos;,
- &apos;piste:grooming&apos;,
- &apos;piste:type&apos;,
- &apos;place&apos;,
- &apos;plant&apos;,
- &apos;platform&apos;,
- &apos;platforms&apos;,
- &apos;pme&apos;,
- &apos;population&apos;,
- &apos;postal_code&apos;,
- &apos;power&apos;,
- &apos;private&apos;,
- &apos;proposed&apos;,
- &apos;psv&apos;,
- &apos;public_transport&apos;,
- &apos;public_transport:version&apos;,
- &apos;railway&apos;,
- &apos;railway:subdivision&apos;,
- &apos;railway_1&apos;,
- &apos;ramp&apos;,
- &apos;ramp:wheelchair&apos;,
- &apos;recycling:batteries&apos;,
- &apos;recycling:cans&apos;,
- &apos;recycling:cardboard&apos;,
- &apos;recycling:cartons&apos;,
- &apos;recycling:clothes&apos;,
- &apos;recycling:electrical_appliances&apos;,
- &apos;recycling:glass&apos;,
- &apos;recycling:glass_bottles&apos;,
- &apos;recycling:green_waste&apos;,
- &apos;recycling:magazines&apos;,
- &apos;recycling:newspaper&apos;,
- &apos;recycling:paper&apos;,
- &apos;recycling:paper_packaging&apos;,
- &apos;recycling:plastic&apos;,
- &apos;recycling:plastic_bottles&apos;,
- &apos;recycling:plastic_packaging&apos;,
- &apos;recycling:scrap_metal&apos;,
- &apos;recycling:small_appliances&apos;,
- &apos;recycling:waste&apos;,
- &apos;recycling:wood&apos;,
- &apos;recycling_type&apos;,
- &apos;ref&apos;,
- &apos;reference&apos;,
- &apos;reg_name&apos;,
- &apos;relation&apos;,
- &apos;religion&apos;,
- &apos;residential&apos;,
- &apos;resource&apos;,
- &apos;restriction&apos;,
- &apos;ride:type&apos;,
- &apos;room&apos;,
- &apos;route&apos;,
- &apos;route_master&apos;,
- &apos;route_ref&apos;,
- &apos;routes&apos;,
- &apos;seasonal&apos;,
- &apos;segregated&apos;,
- &apos;self_service&apos;,
- &apos;service&apos;,
- &apos;service:area&apos;,
- &apos;service:location&apos;,
- &apos;service_times&apos;,
- &apos;shelter&apos;,
- &apos;shelter_type&apos;,
- &apos;shop&apos;,
- &apos;short_name&apos;,
- &apos;sidewalk&apos;,
- &apos;sign&apos;,
- &apos;smoking&apos;,
- &apos;social_facility&apos;,
- &apos;social_facility:for&apos;,
- &apos;source&apos;,
- &apos;source:geometry&apos;,
- &apos;source:name&apos;,
- &apos;source:population&apos;,
- &apos;spaces:disabled&apos;,
- &apos;speciality&apos;,
- &apos;species&apos;,
- &apos;speed&apos;,
- &apos;sport&apos;,
- &apos;sr:blue:men&apos;,
- &apos;sr:blue:woman&apos;,
- &apos;sr:green:men&apos;,
- &apos;sr:green:woman&apos;,
- &apos;sr:white:men&apos;,
- &apos;sr:white:woman&apos;,
- &apos;stars&apos;,
- &apos;start_date&apos;,
- &apos;state&apos;,
- &apos;stop&apos;,
- &apos;stop_id&apos;,
- &apos;store&apos;,
- &apos;store_name&apos;,
- &apos;street_lamp&apos;,
- &apos;substation&apos;,
- &apos;supervised&apos;,
- &apos;surface&apos;,
- &apos;surveillance&apos;,
- &apos;tactile_paving&apos;,
- &apos;takeaway&apos;,
- &apos;taxi&apos;,
- &apos;tee&apos;,
- &apos;temporary:access&apos;,
- &apos;temporary:bicycle&apos;,
- &apos;to&apos;,
- &apos;toilets:disposal&apos;,
- &apos;toll&apos;,
- &apos;tourism&apos;,
- &apos;tower:type&apos;,
- &apos;tracktype&apos;,
- &apos;traffic_calming&apos;,
- &apos;traffic_sign&apos;,
- &apos;traffic_signals&apos;,
- &apos;traffic_signals:direction&apos;,
- &apos;trail_visibility&apos;,
- &apos;trailer&apos;,
- &apos;tunnel&apos;,
- &apos;turn:lanes&apos;,
- &apos;type&apos;,
- &apos;unisex&apos;,
- &apos;unit&apos;,
- &apos;url&apos;,
- &apos;usage&apos;,
- &apos;validate:no_name&apos;,
- &apos;vehicle:backward&apos;,
- &apos;vending&apos;,
- &apos;voltage&apos;,
- &apos;waste&apos;,
- &apos;waste_disposal&apos;,
- &apos;water&apos;,
- &apos;waterway&apos;,
- &apos;website&apos;,
- &apos;wetland&apos;,
- &apos;wheelchair&apos;,
- &apos;wheelchair:description&apos;,
- &apos;width&apos;,
- &apos;wifi&apos;,
- &apos;wikipedia&apos;,
- &apos;wood&apos;,
- &apos;zoo&apos;]
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -660,7 +227,7 @@ Sorted Keys:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="o">%</span><span class="k">run</span> mapparser.py
@@ -689,114 +256,71 @@ defaultdict(&lt;type &apos;int&apos;&gt;, {&apos;changeset&apos;: 863038, &apos;
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Most of these attributes were expected. 'type' keys would have conflicted with the 'type' key that the Lesson 6 code was adding to the documents. This key was renamed to node_type. 'role' was not expected. It belonged to 'member' tags. More on processing 'member' tags to follow.</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="o">%</span><span class="k">run</span> audit.py
+<div class=" highlight hl-ipython2"><pre><span class="c">#%run audit.py</span>
+
+<span class="n">DIR_MAPPING</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;East&#39;</span> <span class="p">:</span> <span class="s">&#39;E&#39;</span><span class="p">,</span>
+               <span class="s">&#39;N.E.&#39;</span> <span class="p">:</span> <span class="s">&#39;NE&#39;</span><span class="p">,</span>
+               <span class="s">&#39;N.E&#39;</span> <span class="p">:</span> <span class="s">&#39;NE&#39;</span><span class="p">,</span>
+               <span class="s">&#39;N.W&#39;</span> <span class="p">:</span> <span class="s">&#39;NW&#39;</span><span class="p">,</span>
+               <span class="s">&#39;N.W.&#39;</span> <span class="p">:</span> <span class="s">&#39;NW&#39;</span><span class="p">,</span>
+               <span class="s">&#39;North&#39;</span> <span class="p">:</span> <span class="s">&#39;N&#39;</span><span class="p">,</span>
+               <span class="s">&#39;Northeast&#39;</span> <span class="p">:</span> <span class="s">&#39;NE&#39;</span><span class="p">,</span>
+               <span class="s">&#39;Northwest&#39;</span> <span class="p">:</span> <span class="s">&#39;NW&#39;</span><span class="p">,</span>
+               <span class="s">&#39;S.E&#39;</span> <span class="p">:</span> <span class="s">&#39;SE&#39;</span><span class="p">,</span>
+               <span class="s">&#39;S.E.&#39;</span> <span class="p">:</span> <span class="s">&#39;SE&#39;</span><span class="p">,</span>
+               <span class="s">&#39;S.W&#39;</span> <span class="p">:</span> <span class="s">&#39;SW&#39;</span><span class="p">,</span>
+               <span class="s">&#39;S.W.&#39;</span> <span class="p">:</span> <span class="s">&#39;SW&#39;</span><span class="p">,</span>
+               <span class="s">&#39;South&#39;</span> <span class="p">:</span> <span class="s">&#39;S&#39;</span><span class="p">,</span>
+               <span class="s">&#39;South-west&#39;</span> <span class="p">:</span> <span class="s">&#39;SW&#39;</span><span class="p">,</span>
+               <span class="s">&#39;Southeast&#39;</span> <span class="p">:</span> <span class="s">&#39;SE&#39;</span><span class="p">,</span>
+               <span class="s">&#39;South-east&#39;</span> <span class="p">:</span> <span class="s">&#39;SE&#39;</span><span class="p">,</span>
+               <span class="s">&#39;Southwest&#39;</span> <span class="p">:</span> <span class="s">&#39;SW&#39;</span><span class="p">,</span>
+               <span class="s">&#39;West&#39;</span> <span class="p">:</span> <span class="s">&#39;W&#39;</span>
+               <span class="p">}</span>
+
+<span class="n">ST_TYPE_MAPPING</span> <span class="o">=</span> <span class="p">{</span> <span class="s">&quot;St&quot;</span><span class="p">:</span> <span class="s">&quot;Street&quot;</span><span class="p">,</span>
+                   <span class="s">&quot;St.&quot;</span><span class="p">:</span> <span class="s">&quot;Street&quot;</span><span class="p">,</span>
+                   <span class="s">&#39;street&#39;</span> <span class="p">:</span> <span class="s">&#39;Street&#39;</span><span class="p">,</span>
+                   <span class="s">&quot;Rd.&quot;</span> <span class="p">:</span> <span class="s">&#39;Road&#39;</span><span class="p">,</span>
+                   <span class="s">&quot;Rd&quot;</span> <span class="p">:</span> <span class="s">&#39;Road&#39;</span><span class="p">,</span>
+                   <span class="s">&#39;Ave&#39;</span> <span class="p">:</span> <span class="s">&quot;Avenue&quot;</span><span class="p">,</span>
+                   <span class="s">&#39;Ave.&#39;</span> <span class="p">:</span> <span class="s">&quot;Avenue&quot;</span><span class="p">,</span>
+                   <span class="s">&#39;Cres&#39;</span> <span class="p">:</span> <span class="s">&#39;Crescent&#39;</span><span class="p">,</span>
+                   <span class="s">&#39;Cres.&#39;</span> <span class="p">:</span> <span class="s">&#39;Crescent&#39;</span><span class="p">,</span>
+                   <span class="s">&#39;Blvd&#39;</span> <span class="p">:</span> <span class="s">&#39;Boulevard&#39;</span><span class="p">,</span>
+                   <span class="s">&#39;Blvd.&#39;</span> <span class="p">:</span> <span class="s">&#39;Boulevard&#39;</span>
+                   <span class="p">}</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>{&apos;200&apos;: set([&apos;West Creek Court 200&apos;]),
- &apos;204A&apos;: set([&apos;Township Road  204A&apos;]),
- &apos;205A&apos;: set([&apos;Township Road  205A&apos;]),
- &apos;21&apos;: set([&apos;21&apos;]),
- &apos;210&apos;: set([&apos;Township Road  210&apos;]),
- &apos;210A&apos;: set([&apos;Township Road  210A&apos;]),
- &apos;210B&apos;: set([&apos;Township Road  210B&apos;]),
- &apos;232&apos;: set([&apos;Township Road  232&apos;]),
- &apos;234&apos;: set([&apos;Township Road  234&apos;]),
- &apos;50A&apos;: set([&apos;Range Road  50A&apos;]),
- &apos;51&apos;: set([&apos;Range Road  51&apos;]),
- &apos;517&apos;: set([&apos;517&apos;]),
- &apos;51A&apos;: set([&apos;Range Road  51A&apos;, &apos;Range Road 51A&apos;]),
- &apos;52&apos;: set([&apos;Range Road  52&apos;]),
- &apos;523&apos;: set([&apos;523&apos;]),
- &apos;527&apos;: set([&apos;527&apos;]),
- &apos;52A&apos;: set([&apos;Range Road  52A&apos;]),
- &apos;66&apos;: set([&apos;400123 Highway 66&apos;]),
- &apos;AB&apos;: set([&apos;32nd Street, Okotoks, AB&apos;]),
- &apos;Alberta&apos;: set([&apos;Veterans Blvd., Airdrie, Alberta&apos;]),
- &apos;Ave&apos;: set([&apos;27 Ave&apos;]),
- &apos;Blvd&apos;: set([&apos;Country HIlls Blvd&apos;, &apos;Vetrans Blvd&apos;]),
- &apos;Blvd.&apos;: set([&apos;Vetrans Blvd.&apos;]),
- &apos;Cres&apos;: set([&apos;Bracewood Cres&apos;]),
- &apos;East&apos;: set([&apos;32nd Street East&apos;, &apos;MacLeod Trail South East&apos;]),
- &apos;N.E.&apos;: set([&apos; 38th Avenue N.E.&apos;, &apos;14th St. N.E.&apos;]),
- &apos;N.W&apos;: set([&apos;Symons Valley Rd N.W&apos;]),
- &apos;N.W.&apos;: set([&apos;Symons Valley Road N.W.&apos;]),
- &apos;North&apos;: set([&apos;Harvest Hills Boulevard North&apos;, &apos;River Drive North&apos;]),
- &apos;Northeast&apos;: set([&apos;16 Avenue Northeast&apos;,
-                   &apos;32 Avenue Northeast&apos;,
-                   &apos;Coronado Place Northeast&apos;]),
- &apos;Northwest&apos;: set([&apos;Bowness Road Northwest&apos;,
-                   &apos;Country Hills Boulevard Northwest&apos;,
-                   &apos;Country Hills Circle Northwest&apos;,
-                   &apos;Hawks Court Northwest&apos;,
-                   &apos;Hawks Place Northwest&apos;,
-                   &apos;Sage Valley Circle Northwest&apos;,
-                   &apos;Sage Valley Court Northwest&apos;,
-                   &apos;Varsity Estates Road Northwest&apos;]),
- &apos;S.E&apos;: set([&apos;1440 17A St. S.E&apos;]),
- &apos;S.W&apos;: set([&apos;WOODPARK BLVD S.W&apos;]),
- &apos;S.W.&apos;: set([&apos;13 Avenue S.W.&apos;,
-              &apos;19 Street S.W.&apos;,
-              &apos;2452 Battleford Avenue S.W.&apos;]),
- &apos;South&apos;: set([&apos;Macleod Trail South&apos;, &apos;River Drive South&apos;]),
- &apos;South-west&apos;: set([&apos;Everhollow Manor  South-west&apos;,
-                    &apos;Oakmount Court  South-west&apos;]),
- &apos;Southeast&apos;: set([&apos;72 Avenue Southeast&apos;,
-                   &apos;9 Avenue Southeast&apos;,
-                   &apos;Big Hill Circle Southeast&apos;,
-                   &apos;Deerfield Manor Southeast&apos;,
-                   &apos;Macleod Trail Southeast&apos;]),
- &apos;Southwest&apos;: set([&apos;18 Avenue Southwest&apos;,
-                   &apos;29 Avenue Southwest&apos;,
-                   &apos;41 Avenue Southwest&apos;,
-                   &apos;Grove Hill Road Southwest&apos;,
-                   &apos;Oakfield Drive Southwest&apos;,
-                   &apos;Stanley Road Southwest&apos;,
-                   &apos;Strathcona Place Southwest&apos;]),
- &apos;St&apos;: set([&apos;Center St&apos;]),
- &apos;West&apos;: set([&apos;1368 Drive West&apos;,
-              &apos;162 Avenue West&apos;,
-              &apos;184 Avenue West&apos;,
-              &apos;194 Avenue West&apos;,
-              &apos;206 Avenue West&apos;,
-              &apos;210 Avenue West&apos;,
-              &apos;214 Avenue West&apos;,
-              &apos;223 Avenue West&apos;,
-              &apos;229 Avenue West&apos;,
-              &apos;2311 Drive West&apos;,
-              &apos;242 Avenue West&apos;,
-              &apos;303 Avenue West&apos;,
-              &apos;352 Street West&apos;,
-              &apos;368 Street West&apos;,
-              &apos;370 Avenue West&apos;,
-              &apos;371 Street West&apos;,
-              &apos;376 Street West&apos;,
-              &apos;378 Avenue West&apos;,
-              &apos;Leisure Lake Drive West&apos;,
-              &apos;Pine Ridge Drive West&apos;,
-              &apos;Pine Ridge Road West&apos;]),
- &apos;street&apos;: set([&apos;2 street&apos;])}
-</pre>
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The output of audit.py allowed DIR_MAPPING and ST_TYPE_MAPPING to be produced which was used to clean the directional suffixes.</p>
 
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -867,19 +391,6 @@ defaultdict(&lt;type &apos;int&apos;&gt;, {&apos;changeset&apos;: 863038, &apos;
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -896,6 +407,8 @@ defaultdict(&lt;type &apos;int&apos;&gt;, {&apos;changeset&apos;: 863038, &apos;
 <div class="text_cell_render border-box-sizing rendered_html">
 <h5 id="File-Sizes">File Sizes<a class="anchor-link" href="#File-Sizes">&#182;</a></h5><p>calgary_canada.osm : 159 MB</p>
 <p>calgary_canada.osm.json : 184 MB</p>
+<h5 id="Number-of-Documents">Number of Documents<a class="anchor-link" href="#Number-of-Documents">&#182;</a></h5><p>db.calgary_canada_osm.count() : 86303</p>
+<h5 id="Largest-Document">Largest Document<a class="anchor-link" href="#Largest-Document">&#182;</a></h5><p>(see analyze.py) 11288 characters</p>
 
 </div>
 </div>
