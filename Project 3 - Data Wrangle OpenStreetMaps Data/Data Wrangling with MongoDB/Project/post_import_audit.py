@@ -41,14 +41,14 @@ def get_all_docs(db):
 
 
 # Instructor Code
-def audit_street_type(street_types, street_name):
+def audit_street_type(street_types, street_name, docid):
     
     if street_name != None:
         m = get_suffix(street_name)
         if m:
             street_type = m.group()
             if street_type not in ST_TYPE_EXPECTED:
-                    street_types[street_type].add(street_name)
+                    street_types[street_type].add((street_name, docid))
     
     #return street_types
     
@@ -74,6 +74,6 @@ street_types = defaultdict(set)
 
 for d in result:
     #print d['address']['street']
-    audit_street_type(street_types, d['address']['street'])
+    audit_street_type(street_types, d['address']['street'], d['_id'])
     
 pprint.pprint(dict(street_types))
